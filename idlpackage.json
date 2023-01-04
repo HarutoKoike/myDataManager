@@ -1,0 +1,10 @@
+{
+  "Name": "dmgr",
+  "Version": "v.0.1",
+  "Author": "Haruto Koike",
+  "Date": "Jan 2023",
+  "Dependencies": {
+      "Name": "IDL",
+      "Version": ">8.0"
+  }
+}
