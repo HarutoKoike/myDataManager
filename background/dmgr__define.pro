@@ -1,4 +1,3 @@
-@dmgr::create.pro
 @dmgr::connect.pro
 @dmgr::record_exists.pro
 @dmgr::add_record.pro
