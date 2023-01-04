@@ -19,7 +19,7 @@ FUNCTION dmgr::record_exists, id, idx
 ;==========================================================+
 COMPILE_OPT IDL2
 ;
-self.check_connected
+self->check_connected
 ;
 IF N_ELEMENTS(id) NE 1 THEN MESSAGE, 'id must be 1-element'
 IF ~SIZE(id, /TYPE) EQ 7 THEN MESSAGE, 'id must be string'

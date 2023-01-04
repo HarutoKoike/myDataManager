@@ -19,9 +19,9 @@ PRO dmgr::remove_record, id
 ;===========================================================+
 COMPILE_OPT IDL2
 ;
-self.check_connected
+self->check_connected
 ;
-exists = self.record_exists(id, idx)
+exists = self->record_exists(id, idx)
 IF ~exists THEN MESSAGE, 'No record was found.'
 ;
 

@@ -1,6 +1,6 @@
 ;==========================================================+
 ; ++ NAME ++
-PRO dmgr::connect
+PRO dmgr::connect, new=new
 ;
 ; ++ PURPOSE ++
 ;  -->
@@ -19,14 +19,23 @@ PRO dmgr::connect
 ;==========================================================+
 COMPILE_OPT IDL2
 ;
-IF STRLEN(self.dbfile) EQ 0 THEN $
-    MESSAGE, '"dbfile" property must be set.'
+self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
+;
+;
+;*----------   ----------*
+;
+IF KEYWORD_SET(new) THEN BEGIN
+    self.is_connected = 1
+    RETURN
+ENDIF
+
+;
+;*----------   ----------*
 ;
 IF ~FILE_TEST(self.dbfile) THEN $
     MESSAGE, 'No file was fount ' + self.dbfile 
 ;
 RESTORE, self.dbfile, description=desc
-;
 txt = 'This is a database created by "dmgr" object' 
 IF STRMATCH(desc, txt) THEN $
     self.is_connected = 1

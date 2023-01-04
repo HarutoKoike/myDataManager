@@ -21,9 +21,9 @@ COMPILE_OPT IDL2
 ;
 IF ~self.is_connected THEN MESSAGE,'No database is connected'
 ;
-exists = self.record_exists(id, idx)
+exists = self->record_exists(id, idx)
 IF ~exists THEN MESSAGE, 'No record: ' + id + ' was found'
-exists = self.attr_exists(id, attribute)
+exists = self->attr_exists(id, attribute)
 IF ~exists THEN MESSAGE, 'No attribute ' + id + ' exists'
 
 data = *((*(self.data))[idx])

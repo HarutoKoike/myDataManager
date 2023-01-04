@@ -7,6 +7,7 @@
 @dmgr::get.pro
 @dmgr::remove_attr.pro
 @dmgr::remove_record.pro
+@dmgr::list.pro
 @dmgr::close.pro
 
 
@@ -19,6 +20,8 @@ self->setproperty, _EXTRA=ex
 self.id   = PTR_NEW(/ALLOCATE)
 self.data = PTR_NEW(/ALLOCATE)
 ;
+CD, CURRENT=c 
+self.dbpath = c
 self.is_connected = 0
 ;
 MESSAGE, 'A data manager object has been created', /CONTINUE

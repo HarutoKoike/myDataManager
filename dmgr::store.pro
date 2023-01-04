@@ -19,9 +19,9 @@ PRO dmgr::store, id, attribute, data, overwrite=overwrite
 ;===========================================================+
 COMPILE_OPT IDL2
 ;
-self.check_connected
+self->check_connected
 ;
-exists = self.record_exists(id, idx)
+exists = self->record_exists(id, idx)
 ;
 IF ~exists THEN MESSAGE, 'No record: ' + id + ' was found'
 
