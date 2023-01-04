@@ -28,6 +28,9 @@ IF ~FILE_TEST(self.dbfile) THEN $
 RESTORE, self.dbfile, description=desc
 ;
 txt = 'This is a database created by "dmgr" object' 
-IF STRMATCH(desc EQ txt) THEN $
+IF STRMATCH(desc, txt) THEN $
     self.is_connected = 1
+;
+*(self.id)   = id
+*(self.data) = data
 END

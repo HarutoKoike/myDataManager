@@ -27,9 +27,5 @@ self.dbpath = dbpath
 
 ;
 self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
-
-description = 'This is a database created by "dmgr" object'
-SAVE, self, description=description, FILENAME=self.dbfile
-;
 self.is_connected = 1
 END

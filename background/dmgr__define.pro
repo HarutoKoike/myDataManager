@@ -1,11 +1,26 @@
 @dmgr::create.pro
 @dmgr::connect.pro
+@dmgr::record_exists.pro
 @dmgr::add_record.pro
+@dmgr::attr_exists.pro
+@dmgr::store.pro
+@dmgr::get.pro
+@dmgr::remove_attr.pro
+@dmgr::remove_record.pro
+@dmgr::close.pro
 
 
 FUNCTION  dmgr::init, _EXTRA=ex
 COMPILE_OPT IDL2
 self->setproperty, _EXTRA=ex
+;
+;*---------- initiate  ----------*
+;
+self.id   = PTR_NEW(/ALLOCATE)
+self.data = PTR_NEW(/ALLOCATE)
+;
+self.is_connected = 0
+;
 MESSAGE, 'A data manager object has been created', /CONTINUE
 RETURN, 1
 END
@@ -42,6 +57,19 @@ IF ARG_PRESENT(is_connected) THEN is_connected = self.is_connected
 IF ARG_PRESENT(id) THEN id = self.id 
 IF ARG_PRESENT(data) THEN data = self.data 
 END
+
+
+
+
+;-------------------------------------------------+
+; 
+;-------------------------------------------------+
+PRO dmgr::check_connected, _EXTRA=ex
+COMPILE_OPT IDL2
+IF ~self.is_connected THEN $
+    MESSAGE, 'No database is connected', _EXTRA=ex
+END
+
 
 
 

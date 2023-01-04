@@ -1,6 +1,6 @@
 ;===========================================================+
 ; ++ NAME ++
-PRO dmgr::add_record, id
+PRO dmgr::remove_attr, id, attribute
 ;
 ; ++ PURPOSE ++
 ;  -->
@@ -21,14 +21,9 @@ COMPILE_OPT IDL2
 ;
 self.check_connected
 ;
-IF SIZE(id, /TYPE) NE 7 THEN $
-    MESSAGE, 'id must be string'
+dum    = self.record_exists(id, idx) 
+exists = self.attr_exists(id, attribute)
+IF TOTAL(exists) EQ 0 THEN MESSAGE, 'No attribute was found'
 
-;
-exists = self.record_exists(id)
-IF exists THEN MESSAGE, 'id :' + id + ' already exists'
-;
-*(self.id)   = [*(self.id), id]
-*(self.data) = [*(self.data), PTR_NEW(/ALLOCATE)]
-
-END
+(*((*(self.data))[idx])).Remove, attribute
+END 
