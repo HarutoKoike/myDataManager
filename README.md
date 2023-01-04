@@ -9,11 +9,10 @@ dm.dbname = 'mydb'
 ```
 Creating a new database
 ```
-dm->create
+dm->connect, /new
 ```
 Connecting to a existing database
 ```
-dm.dbfile = '~/idl/database/mydb.sav'
 dm->connect
 ```
 
@@ -63,7 +62,6 @@ dm->close
 ├── README.md
 ├── background
 │   ├── dmgr::close.pro
-│   ├── dmgr::connect.pro
 │   ├── dmgr::create.pro
 │   ├── dmgr::record_exists.pro
 │   └── dmgr__define.pro
