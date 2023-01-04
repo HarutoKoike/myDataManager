@@ -23,8 +23,7 @@ ON_ERROR, 1
 IF STRLEN(self.dbname) EQ 0 THEN $
     MESSAGE, 'dbname property is needed.'
 ;
-IF STRLEN(self.dbfile) EQ 0 THEN $
-    self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
+self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
 
 ;
 ;*----------   ----------*
