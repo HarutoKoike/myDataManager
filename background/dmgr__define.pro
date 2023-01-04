@@ -11,7 +11,7 @@
 @dmgr::close.pro
 
 
-FUNCTION  dmgr::init, _EXTRA=ex
+FUNCTION  dmgr::init, quiet=quiet, _EXTRA=ex
 COMPILE_OPT IDL2
 ON_ERROR, 1
 self->setproperty, _EXTRA=ex
@@ -25,7 +25,9 @@ CD, CURRENT=c
 self.dbpath = c
 self.is_connected = 0
 ;
-MESSAGE, 'A data manager object has been created', /CONTINUE
+IF ~KEYWORD_SET(quiet) THEN $
+    MESSAGE, 'A data manager object has been created', /CONTINUE
+;
 RETURN, 1
 END
 

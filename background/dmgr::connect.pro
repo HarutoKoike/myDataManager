@@ -1,6 +1,6 @@
 ;==========================================================+
 ; ++ NAME ++
-PRO dmgr::connect
+PRO dmgr::connect, quiet=quiet
 ;
 ; ++ PURPOSE ++
 ;  -->
@@ -39,5 +39,6 @@ IF ISA(id)   THEN *(self.id)     = id
 IF ISA(data) THEN *(self.data)   = data
 
 
-PRINT, '% connection to "' + self.dbname  + '"is established'
+IF ~KEYWORD_SET(quiet) THEN $
+    PRINT, '% connection to "' + self.dbname  + '"is established'
 END

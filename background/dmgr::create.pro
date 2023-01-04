@@ -26,10 +26,14 @@ IF STRLEN(self.dbname) EQ 0 THEN $
 IF STRLEN(self.dbfile) EQ 0 THEN $
     self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
 ;
-IF FILE_TEST(self.dbfile) AND ~KEYWORD_SET(renew) THEN BEGIN
-    MESSAGE, 'database ' + '"' + self.dbfile + '" already exists.', $
-             CONTINUE=skip_existing
-    RETURN
+;
+IF FILE_TEST(self.dbfile) THEN BEGIN
+    IF KEYWORD_SET(skip_existing) THEN RETURN
+    IF ~KEYWORD_SET(renew) THEN BEGIN
+        MESSAGE, 'database ' + '"' + self.dbfile + '" already exists.', $
+                 /CONTINUE
+        RETURN
+    ENDIF
 ENDIF
 
 
