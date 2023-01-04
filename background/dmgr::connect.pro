@@ -40,6 +40,6 @@ txt = 'This is a database created by "dmgr" object'
 IF STRMATCH(desc, txt) THEN $
     self.is_connected = 1
 ;
-*(self.id)   = id
-*(self.data) = data
+IF ISA(id) THEN *(self.id)   = id
+IF ISA(data) THEN *(self.data) = data
 END
