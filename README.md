@@ -32,6 +32,13 @@ If you overwrite existing data, store with overwrite keyword.
 dm->store, 'id01', 'attr1', data, /overwrite
 ```
 
+
+## Retrieve stored data
+```
+data = dm->get('id01', 'attr1')
+```
+
+
 ## Remove record and attribute
 Remove a record
 ```
