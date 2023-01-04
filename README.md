@@ -1,3 +1,19 @@
+## 1. Create and connect to a database 
+At first, create a dmgr object and specify name for database.
+```
+dm = dmgr()
+dm.dbname = 'mydb'
+```
+1. Creating a new database
+```
+dm->create
+```
+2. Connect to a existing database
+```
+dm->connect
+```
+
+
 ```
 ├── README.md
 ├── background
