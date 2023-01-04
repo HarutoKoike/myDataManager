@@ -23,7 +23,10 @@ self->check_connected
 ;
 dum    = self->record_exists(id, idx) 
 exists = self->attr_exists(id, attribute)
-IF TOTAL(exists) EQ 0 THEN MESSAGE, 'No attribute was found'
+IF TOTAL(exists) EQ 0 THEN BEGIN
+    MESSAGE, 'No attribute was found', /CONTINUE
+    RETURN
+END
 
 (*((*(self.data))[idx])).Remove, attribute
 END 

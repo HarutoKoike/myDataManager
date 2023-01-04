@@ -1,6 +1,6 @@
 ;==========================================================+
 ; ++ NAME ++
-PRO dmgr::connect, new=new
+PRO dmgr::connect
 ;
 ; ++ PURPOSE ++
 ;  -->
@@ -18,16 +18,13 @@ PRO dmgr::connect, new=new
 ;  H.Koike 
 ;==========================================================+
 COMPILE_OPT IDL2
+ON_ERROR, 1
 ;
-self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
+IF STRLEN(self.dbname) EQ 0 THEN $
+    MESSAGE, 'dbname property is needed.'
 ;
-;
-;*----------   ----------*
-;
-IF KEYWORD_SET(new) THEN BEGIN
-    self.is_connected = 1
-    RETURN
-ENDIF
+IF STRLEN(self.dbfile) EQ 0 THEN $
+    self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
 
 ;
 ;*----------   ----------*
@@ -37,9 +34,8 @@ IF ~FILE_TEST(self.dbfile) THEN $
 ;
 RESTORE, self.dbfile, description=desc
 txt = 'This is a database created by "dmgr" object' 
-IF STRMATCH(desc, txt) THEN $
-    self.is_connected = 1
+IF STRMATCH(desc, txt) THEN self.is_connected = 1
 ;
-IF ISA(id) THEN *(self.id)   = id
-IF ISA(data) THEN *(self.data) = data
+IF ISA(id)   THEN *(self.id)     = id
+IF ISA(data) THEN *(self.data)   = data
 END

@@ -1,3 +1,4 @@
+@dmgr::create.pro
 @dmgr::connect.pro
 @dmgr::record_exists.pro
 @dmgr::add_record.pro
@@ -12,6 +13,7 @@
 
 FUNCTION  dmgr::init, _EXTRA=ex
 COMPILE_OPT IDL2
+ON_ERROR, 1
 self->setproperty, _EXTRA=ex
 ;
 ;*---------- initiate  ----------*
@@ -68,6 +70,7 @@ END
 ;-------------------------------------------------+
 PRO dmgr::check_connected, _EXTRA=ex
 COMPILE_OPT IDL2
+ON_ERROR, 1
 IF ~self.is_connected THEN $
     MESSAGE, 'No database is connected', _EXTRA=ex
 END

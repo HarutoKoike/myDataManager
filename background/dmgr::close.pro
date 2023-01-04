@@ -18,6 +18,7 @@ PRO dmgr::close
 ;  H.Koike 
 ;===========================================================+
 COMPILE_OPT IDL2
+ON_ERROR, 1
 ;
 self->check_connected
 id   = *(self.id)

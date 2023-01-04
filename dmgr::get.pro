@@ -18,6 +18,7 @@ FUNCTION dmgr::get, id, attribute
 ;  H.Koike 
 ;===========================================================+
 COMPILE_OPT IDL2
+ON_ERROR, 1
 ;
 IF ~self.is_connected THEN MESSAGE,'No database is connected'
 ;

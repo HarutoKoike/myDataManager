@@ -21,8 +21,15 @@ COMPILE_OPT IDL2
 ;
 self->check_connected
 ;
-IF N_ELEMENTS(id) NE 1 THEN MESSAGE, 'id must be 1-element'
-IF ~SIZE(id, /TYPE) EQ 7 THEN MESSAGE, 'id must be string'
+IF N_ELEMENTS(id) NE 1 THEN BEGIN
+    MESSAGE, 'id must be 1-element', /CONTINUE
+    RETURN, 0
+ENDIF
+;
+IF ~SIZE(id, /TYPE) EQ 7 THEN BEGIN
+    MESSAGE, 'id must be string', /COUTINUE
+    RETURN, 0
+ENDIF
 ;
 ;
 IF ~ISA(*(self.id)) THEN RETURN, 0 

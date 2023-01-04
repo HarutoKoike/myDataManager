@@ -18,6 +18,7 @@ PRO dmgr::store, id, attribute, data, overwrite=overwrite
 ;  H.Koike 
 ;===========================================================+
 COMPILE_OPT IDL2
+ON_ERROR, 1
 ;
 self->check_connected
 ;
@@ -34,7 +35,7 @@ IF N_ELEMENTS(attribute) NE 1 THEN $
 ;*---------- not exists  ----------*
 ;   
 IF ~ISA(*((*(self.data))[idx]) ) THEN BEGIN
-    hash = HASH(attribute, d)
+    hash = HASH(attribute, data)
     (*(self.data))[idx] = PTR_NEW(hash)
     RETURN
 ENDIF
