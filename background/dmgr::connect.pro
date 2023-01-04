@@ -37,4 +37,7 @@ IF STRMATCH(desc, txt) THEN self.is_connected = 1
 ;
 IF ISA(id)   THEN *(self.id)     = id
 IF ISA(data) THEN *(self.data)   = data
+
+
+PRINT, '% connection to "' + self.dbname  + '"is established'
 END
