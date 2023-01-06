@@ -23,7 +23,8 @@ self->check_connected
 ;
 ids = *(self.id)
 ;
-IF KEYWORD_SET(rec_num) THEN BEGIN
+IF KEYWORD_SET(rec_num) OR ARG_PRESENT(rec_num) THEN BEGIN
+    rec_num = N_ELEMENTS(ids)
     PRINT, '% database: "' + self.dbname + '"'
     PRINT, '%  Total ' + STRCOMPRESS(STRING(N_ELEMENTS(ids)), /REMOVE) + ' records'
     RETURN
@@ -37,6 +38,8 @@ FOR i = 0, N_ELEMENTS(ids) - 1 DO BEGIN
     PRINT, '  id : ' + ids[i]
     PRINT, '+----------------------------------+'
     PRINT, ''
+    ;
+    IF ~ISA( *((*(self.data))[0]) ) THEN RETURN
     ;
     h    = *((*(self.data))[i])
     keys = h.Keys()

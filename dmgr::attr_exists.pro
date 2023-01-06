@@ -29,5 +29,11 @@ exists = self->record_exists(id, idx)
 IF ~exists THEN MESSAGE, 'No record: ' + id + ' was found'
 
 rec = (*((*(self.data))[idx]))
-RETURN, rec.HasKey(attribute)
+;
+IF SIZE(rec, /TYPE) EQ 11 THEN BEGIN
+    RETURN, rec.HasKey(attribute)
+ENDIF ELSE BEGIN
+    RETURN, 0
+ENDELSE
+
 END

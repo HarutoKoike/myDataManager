@@ -44,12 +44,12 @@ ENDIF
 ;
 ;*---------- exists  ----------*
 ;
-rec = (*((*(self.data))[idx]))
-IF ~rec.HasKey(attribute) OR KEYWORD_SET(overwrite) THEN BEGIN
+IF ~self->attr_exists(id, attribute) OR KEYWORD_SET(overwrite) THEN BEGIN
     (*((*(self.data))[idx]))[attribute] = data
 ENDIF ELSE BEGIN
-    MESSAGE, 'record: ' + id + ',  attribute: ' + attribute + $
-             ' already exists.'
+    MESSAGE, 'record: ' + id + ',  attribute: ' + STRING(attribute) + $
+             ' already exists.', /CONTINUE
+    RETURN
 ENDELSE
 
 END

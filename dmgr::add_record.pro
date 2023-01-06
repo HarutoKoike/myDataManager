@@ -27,8 +27,10 @@ IF SIZE(id, /TYPE) NE 7 THEN $
 
 ;
 exists = self->record_exists(id)
-IF exists THEN RETURN
-;IF exists THEN MESSAGE, 'id :' + id + ' already exists'
+IF exists THEN BEGIN
+    MESSAGE, 'id :' + id + ' already exists', /CONTINUE
+    RETURN
+ENDIF
 ;
 *(self.id)   = [*(self.id), id]
 *(self.data) = [*(self.data), PTR_NEW(/ALLOCATE)]
