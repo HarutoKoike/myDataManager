@@ -20,16 +20,17 @@ PRO dmgr::connect, quiet=quiet
 COMPILE_OPT IDL2
 ON_ERROR, 1
 ;
-IF STRLEN(self.dbname) EQ 0 THEN $
-    MESSAGE, 'dbname property is needed.'
+IF STRLEN(self.dbname) EQ 0 AND STRLEN(self.dbfile) EQ 0 THEN $
+    MESSAGE, 'dbname or dbfile property is needed.'
 ;
-self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
+IF STRLEN(self.dbfile) EQ 0 THEN $
+    self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
 
 ;
 ;*----------   ----------*
 ;
 IF ~FILE_TEST(self.dbfile) THEN $
-    MESSAGE, 'No file was fount ' + self.dbfile 
+    MESSAGE, 'No file was found: ' + self.dbfile 
 ;
 RESTORE, self.dbfile, description=desc
 txt = 'This is a database created by "dmgr" object' 

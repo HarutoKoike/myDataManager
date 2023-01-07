@@ -42,6 +42,7 @@ COMPILE_OPT IDL2
 ;
 IF KEYWORD_SET(dbname) THEN self.dbname = dbname
 IF KEYWORD_SET(dbpath) THEN self.dbpath = dbpath
+IF KEYWORD_SET(dbfile) THEN self.dbfile = dbfile
 IF KEYWORD_SET(description) THEN self.description = description
 IF KEYWORD_SET(is_connected) THEN self.is_connected = is_connected
 END
@@ -58,6 +59,7 @@ COMPILE_OPT IDL2
 ;
 IF ARG_PRESENT(dbname) THEN dbname = self.dbname
 IF ARG_PRESENT(dbpath) THEN dbpath = self.dbpath
+IF ARG_PRESENT(dbfile) THEN dbfile = self.dbfile
 IF ARG_PRESENT(description) THEN description = self.description
 IF ARG_PRESENT(is_connected) THEN is_connected = self.is_connected 
 IF ARG_PRESENT(id) THEN id = self.id 
