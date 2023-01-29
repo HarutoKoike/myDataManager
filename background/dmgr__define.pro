@@ -9,6 +9,7 @@
 @dmgr::remove_record.pro
 @dmgr::list.pro
 @dmgr::close.pro
+@dmgr::export2md.pro
 
 
 FUNCTION  dmgr::init, quiet=quiet, _EXTRA=ex
@@ -21,8 +22,6 @@ self->setproperty, _EXTRA=ex
 self.id   = PTR_NEW(/ALLOCATE)
 self.data = PTR_NEW(/ALLOCATE)
 ;
-CD, CURRENT=c 
-self.dbpath = c
 self.is_connected = 0
 ;
 IF ~KEYWORD_SET(quiet) THEN $
@@ -36,14 +35,12 @@ END
 ;-------------------------------------------------+
 ; 
 ;-------------------------------------------------+
-PRO dmgr::SetProperty, dbname=dbname, dbpath=dbpath, dbfile=dbfile, $
+PRO dmgr::SetProperty, dbfile=dbfile, $
                        description=description, is_connected=is_connected
 COMPILE_OPT IDL2
 ;
-IF KEYWORD_SET(dbname) THEN self.dbname = dbname
-IF KEYWORD_SET(dbpath) THEN self.dbpath = dbpath
-IF KEYWORD_SET(dbfile) THEN self.dbfile = dbfile
-IF KEYWORD_SET(description) THEN self.description = description
+IF KEYWORD_SET(dbfile)       THEN self.dbfile = dbfile
+IF KEYWORD_SET(description)  THEN self.description = description
 IF KEYWORD_SET(is_connected) THEN self.is_connected = is_connected
 END
 
@@ -52,18 +49,16 @@ END
 ;-------------------------------------------------+
 ; 
 ;-------------------------------------------------+
-PRO dmgr::GetProperty, dbname=dbname, dbpath=dbpath, dbfile=dbfile, $
+PRO dmgr::GetProperty, dbfile=dbfile, $
                        description=description, is_connected=is_connected , $
                        id=id, data=data
 COMPILE_OPT IDL2
 ;
-IF ARG_PRESENT(dbname) THEN dbname = self.dbname
-IF ARG_PRESENT(dbpath) THEN dbpath = self.dbpath
-IF ARG_PRESENT(dbfile) THEN dbfile = self.dbfile
-IF ARG_PRESENT(description) THEN description = self.description
+IF ARG_PRESENT(dbfile)       THEN dbfile = self.dbfile
+IF ARG_PRESENT(description)  THEN description = self.description
 IF ARG_PRESENT(is_connected) THEN is_connected = self.is_connected 
-IF ARG_PRESENT(id) THEN id = self.id 
-IF ARG_PRESENT(data) THEN data = self.data 
+IF ARG_PRESENT(id)           THEN id = self.id 
+IF ARG_PRESENT(data)         THEN data = self.data 
 END
 
 
@@ -105,8 +100,6 @@ COMPILE_OPT IDL2
 
 void = {                     $
         dmgr,                $
-        dbname: '',          $
-        dbpath: '',          $
         dbfile: '',          $
         description: '',     $
         is_connected: 0,     $

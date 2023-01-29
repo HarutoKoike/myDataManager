@@ -17,15 +17,13 @@ PRO dmgr::create, renew=renew, skip_existing=skip_existing
 ; ++ HISTORY ++
 ;  H.Koike 1/9,2021
 ;===========================================================+
+;
 COMPILE_OPT IDL2
 ON_ERROR, 1
 ; 
-IF STRLEN(self.dbname) EQ 0 THEN $
-    MESSAGE, 'dbname property is needed.' 
-;
 IF STRLEN(self.dbfile) EQ 0 THEN $
-    self.dbfile = FILEPATH(self.dbname + '.sav', ROOT=self.dbpath)
-;
+    MESSAGE, 'File name for database is specified to "dbfile" property.'
+
 ;
 IF FILE_TEST(self.dbfile) THEN BEGIN
     IF KEYWORD_SET(skip_existing) THEN RETURN
