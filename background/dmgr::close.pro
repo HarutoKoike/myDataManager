@@ -29,4 +29,5 @@ SAVE, id, data, description=description, $
       FILENAME=self.dbfile
 ;
 self.is_connected = 0
+OBJ_DESTROY, self
 END

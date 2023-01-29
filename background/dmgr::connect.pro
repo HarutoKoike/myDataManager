@@ -37,7 +37,7 @@ IF ISA(data) THEN *(self.data)   = data
 
 
 IF ~KEYWORD_SET(quiet) THEN $
-    PRINT, '% Connection to "' + self.dbfile  + '"is established'
+    PRINT, '% Connection to "' + self.dbfile  + '" is established'
 
 
 END

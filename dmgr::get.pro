@@ -31,7 +31,7 @@ ENDIF
 
 exists = self->attr_exists(id, attribute)
 IF ~exists THEN BEGIN 
-    MESSAGE, 'No attribute ' + id + ' exists', /CONTINUE
+    MESSAGE, 'No attribute ' + attribute + ' exists', /CONTINUE
     RETURN, !NULL
 ENDIF
 

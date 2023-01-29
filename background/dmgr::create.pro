@@ -40,4 +40,6 @@ data = *(self.data)
 ;                           
 desc = 'This is a database created by "dmgr" object'  
 SAVE, id, data, FILENAME=self.dbfile, DESCRIPTION=desc
+;
+self.is_connected = 1
 END
