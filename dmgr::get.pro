@@ -1,6 +1,6 @@
 ;===========================================================+
 ; ++ NAME ++
-FUNCTION dmgr::get, id, attribute, null=null
+FUNCTION dmgr::get, id_in, attribute, null=null
 ;
 ; ++ PURPOSE ++
 ;  -->
@@ -19,6 +19,9 @@ FUNCTION dmgr::get, id, attribute, null=null
 ;===========================================================+
 COMPILE_OPT IDL2
 ON_ERROR, 1
+;
+id = id_in
+IF ISA(id, 'INT') THEN id = (*(self.id))[id]
 ;
 IF ~self.is_connected THEN MESSAGE,'No database is connected'
 ;
