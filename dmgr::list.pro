@@ -1,6 +1,6 @@
 ;===========================================================+
 ; ++ NAME ++
-PRO dmgr::list, rec_num=rec_num
+PRO dmgr::list, rec_num=rec_num, index=index, attributes=attributes
 ;
 ; ++ PURPOSE ++
 ;  -->
@@ -9,19 +9,21 @@ PRO dmgr::list, rec_num=rec_num
 ;  -->
 ;
 ; ++ KEYWORDS ++
-; -->
+; -->  rec_num : receives number of records
+; -->  index   : 
+; -->  attributes : 
 ;
 ; ++ CALLING SEQUENCE ++
 ;  -->
 ;
 ; ++ HISTORY ++
-;  H.Koike 1/9,2021
 ;===========================================================+
 COMPILE_OPT IDL2 
 ;
 self->check_connected
 ;
 ids = *(self.id)
+IF ~KEYWORD_SET(index) THEN index = LINDGEN(N_ELEMENTS(ids))
 ;
 IF KEYWORD_SET(rec_num) OR ARG_PRESENT(rec_num) THEN BEGIN
     rec_num = N_ELEMENTS(ids)
@@ -30,22 +32,37 @@ IF KEYWORD_SET(rec_num) OR ARG_PRESENT(rec_num) THEN BEGIN
     RETURN
 ENDIF
 
-FOR i = 0, N_ELEMENTS(ids) - 1 DO BEGIN
+FOREACH i, index DO BEGIN
+    print, i
     PRINT, ''
     PRINT, ''
     PRINT, ''
     PRINT, '+----------------------------------------------------------------------+'
-    PRINT, ';  id :          ' + ids[i]
+    PRINT, ';  id :          ' + STRING(ids[i])
     PRINT, '+----------------------------------------------------------------------+'
     PRINT, ''
     ;
-    IF ~ISA( *((*(self.data))[0]) ) THEN RETURN
+    IF ~ISA( *((*(self.data))[i]) ) THEN RETURN
     ;
     h    = *((*(self.data))[i])
-    keys = h.Keys()
+    dum  = h.Keys()
+    keys = []
+    FOREACH k, dum DO BEGIN
+        keys = [keys, STRING(k)]
+    ENDFOREACH
+    ;
+    IF KEYWORD_SET(attributes) THEN BEGIN
+        idx = []
+        FOR j = 0, N_ELEMENTS(attributes) - 1 DO BEGIN
+            idx = [idx, WHERE(STRMATCH(keys, attributes[j]), /NULL)] 
+        ENDFOR
+        keys = keys[idx]
+    ENDIF
+    ;
+
     FOR j = 0, N_ELEMENTS(keys) - 1 DO BEGIN
         PRINT, keys[j], ' : ',  h[ keys[j] ]
     ENDFOR
-ENDFOR
+ENDFOREACH
 
 END
