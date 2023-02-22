@@ -32,6 +32,8 @@ IF ~exists THEN BEGIN
 ENDIF
 
 
+
+
 exists = self->attr_exists(id, attribute)
 IF ~exists THEN BEGIN 
     MESSAGE, 'No attribute ' + attribute + ' exists', /CONTINUE
