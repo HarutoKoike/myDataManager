@@ -44,5 +44,5 @@ IF N_ELEMENTS(data) EQ 0 THEN BEGIN
     RETURN, 0
 END
 
-RETURN, arr
+RETURN, data
 END
