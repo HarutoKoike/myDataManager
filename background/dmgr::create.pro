@@ -1,6 +1,6 @@
 ;===========================================================+
 ; ++ NAME ++
-PRO dmgr::create, renew=renew, skip_existing=skip_existing
+PRO dmgr::create, renew=renew
 ;
 ; ++ PURPOSE ++
 ;  -->
@@ -15,7 +15,7 @@ PRO dmgr::create, renew=renew, skip_existing=skip_existing
 ;  -->
 ;
 ; ++ HISTORY ++
-;  H.Koike 1/9,2021
+;  H.Koike 2022/10
 ;===========================================================+
 ;
 COMPILE_OPT IDL2
@@ -26,7 +26,6 @@ IF STRLEN(self.dbfile) EQ 0 THEN $
 
 ;
 IF FILE_TEST(self.dbfile) THEN BEGIN
-    IF KEYWORD_SET(skip_existing) THEN RETURN
     IF ~KEYWORD_SET(renew) THEN BEGIN
         MESSAGE, 'database ' + '"' + self.dbfile + '" already exists.', $
                  /CONTINUE
