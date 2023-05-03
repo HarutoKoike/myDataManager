@@ -5,6 +5,7 @@
 @dmgr::attr_exists.pro
 @dmgr::store.pro
 @dmgr::get.pro
+@dmgr::get_all.pro
 @dmgr::remove_attr.pro
 @dmgr::remove_record.pro
 @dmgr::list.pro
