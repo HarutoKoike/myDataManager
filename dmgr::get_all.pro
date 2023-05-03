@@ -36,7 +36,7 @@ IF N_ELEMENTS(idarr) eq 0 then $
 data = []
 FOR i = 0, N_ELEMENTS(idarr) - 1 DO BEGIN
     IF self->attr_exists(idarr[i], attribute) THEN $
-        data = [data, PTR_NEW(self->get(idarr[i], attribute)]
+        data = [data, PTR_NEW(self->get(idarr[i], attribute)) ]
 ENDFOR
 
 IF N_ELEMENTS(data) EQ 0 THEN BEGIN 
